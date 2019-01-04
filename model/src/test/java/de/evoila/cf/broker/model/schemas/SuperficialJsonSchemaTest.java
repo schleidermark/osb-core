@@ -1,19 +1,5 @@
 package de.evoila.cf.broker.model.schemas;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,8 +9,20 @@ import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-
 import de.evoila.cf.broker.model.catalog.plan.Plan;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * This Test class checks for simple equality between the given initial json and the generated one, 
@@ -75,7 +73,7 @@ public class SuperficialJsonSchemaTest {
     	JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
     	ProcessingReport r = factory.getSyntaxValidator().validateSchema(schema);
     	assertTrue(r.toString(),r.isSuccess());
-    	assertFalse("The schema holds keywords that are unkown. This may cause the validator to skip invalid parts of the schema:\n" +r.toString(),
+    	assertFalse("The schema holds keywords that are unknown. This may cause the validator to skip invalid parts of the schema:\n" +r.toString(),
     			r.toString().contains("warning: the following keywords are unknown and will be ignored:"));
     	log.info(r.toString().trim());
 	}
